@@ -33,6 +33,10 @@
     @apply bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent;
   }
   
+  .bg-size-200 {
+    background-size: 200% 200%;
+  }
+  
   .section-padding {
     @apply py-8 px-4 sm:px-6 lg:px-8;
   }
