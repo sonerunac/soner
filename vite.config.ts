@@ -58,7 +58,8 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    open: true
+    open: true,
+    host: true
   },
   build: {
     outDir: 'dist',
@@ -71,6 +72,17 @@ export default defineConfig({
           animations: ['framer-motion']
         }
       }
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
     }
+  },
+  define: {
+    __VUE_OPTIONS_API__: false,
+    __VUE_PROD_DEVTOOLS__: false
   }
 })

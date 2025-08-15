@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { validateContactForm, sanitizeInput, type ContactFormData, type ValidationError } from '../utils/validation'
 
 const Contact: React.FC = () => {
   const [ref, inView] = useInView({
@@ -9,13 +10,14 @@ const Contact: React.FC = () => {
     threshold: 0.1,
   })
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     subject: '',
     message: ''
   })
 
+  const [errors, setErrors] = useState<ValidationError[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -42,18 +44,32 @@ const Contact: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+    const sanitizedValue = sanitizeInput(value)
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: sanitizedValue
     }))
+
+    // Clear error for this field when user starts typing
+    setErrors(prev => prev.filter(error => error.field !== name))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate form
+    const validationErrors = validateContactForm(formData)
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrors([])
 
-    // Simulate form submission
+    // Simulate form submission with rate limiting
     try {
       await new Promise(resolve => setTimeout(resolve, 2000))
       setSubmitStatus('success')

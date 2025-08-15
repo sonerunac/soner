@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
+import { AccessibilityProvider } from './components/AccessibilityProvider'
+import ErrorBoundary from './components/ErrorBoundary'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
+import LazyComponent from './components/LazyComponents'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import LoadingScreen from './components/LoadingScreen'
@@ -28,20 +27,26 @@ function App() {
   }
 
   return (
-    <ThemeProvider>
-      <div className="h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 overflow-hidden">
-        <Header activeSection={activeSection} onSectionChange={setActiveSection} />
-        <main className="h-full overflow-y-auto">
-          {activeSection === 'home' && <Hero onNavigate={setActiveSection} />}
-          {activeSection === 'about' && <About />}
-          {activeSection === 'skills' && <Skills />}
-          {activeSection === 'projects' && <Projects />}
-          {activeSection === 'contact' && <Contact />}
-        </main>
-        <Footer />
-        <ScrollToTop />
-      </div>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AccessibilityProvider>
+          <div className="h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 overflow-hidden">
+            <Suspense fallback={<LoadingScreen />}>
+              <Header activeSection={activeSection} onSectionChange={setActiveSection} />
+              <main id="main-content" className="h-full overflow-y-auto" role="main">
+                {activeSection === 'home' && <Hero onNavigate={setActiveSection} />}
+                {activeSection === 'about' && <LazyComponent component="about" />}
+                {activeSection === 'skills' && <LazyComponent component="skills" />}
+                {activeSection === 'projects' && <LazyComponent component="projects" />}
+                {activeSection === 'contact' && <LazyComponent component="contact" />}
+              </main>
+              <Footer />
+              <ScrollToTop />
+            </Suspense>
+          </div>
+        </AccessibilityProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 
