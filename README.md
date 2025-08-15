@@ -63,6 +63,17 @@ npm run build
 
 ## 🚀 Deployment
 
+### GitHub Pages
+Bu proje GitHub Pages ile otomatik olarak deploy edilir. Her `main` branch'e push yapıldığında otomatik olarak güncellenir.
+
+**Live Site**: https://sonerunac.github.io/sonerunac/
+
+### Manuel Deploy
+```bash
+npm run build
+# dist klasörünü GitHub Pages'e yükleyin
+```
+
 ### Vercel
 ```bash
 npm install -g vercel
