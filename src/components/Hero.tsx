@@ -10,15 +10,6 @@ type HeroProps = {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const controls = useAnimation()
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
 
   useEffect(() => {
     controls.start('visible')
@@ -53,7 +44,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   ]
 
   return (
-    <section id="home" className="h-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+         <section id="home" className="h-full flex items-start justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -122,43 +113,19 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </motion.div>
       </div>
 
-      {/* Mouse Follow Effect */}
-      <motion.div
-        className="absolute w-4 h-4 bg-primary-500 rounded-full pointer-events-none opacity-20"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      />
 
-      <div className="container-custom section-padding relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Animated Greeting */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6"
-          >
-            <motion.p
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="text-lg font-medium bg-gradient-to-r from-primary-600 via-purple-600 to-primary-600 bg-size-200 bg-clip-text text-transparent"
-            >
-              Merhaba, ben
-            </motion.p>
-          </motion.div>
 
-          {/* Animated Name with Typewriter Effect */}
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-bold mb-6"
-          >
+                                                       <div className="container-custom section-padding relative z-10 pt-4 sm:pt-6 md:pt-8">
+                 <div className="text-center max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+
+
+                     {/* Animated Name with Typewriter Effect */}
+           <motion.h1
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: 1, scale: 1 }}
+             transition={{ duration: 1, ease: "easeOut" }}
+             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6"
+           >
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -169,13 +136,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </motion.span>
           </motion.h1>
 
-          {/* Animated Title */}
-          <motion.h2
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-            className="text-2xl md:text-4xl text-slate-600 dark:text-slate-300 mb-8 font-light"
-          >
+                     {/* Animated Title */}
+           <motion.h2
+             initial={{ opacity: 0, x: -100 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+             className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-slate-600 dark:text-slate-300 mb-6 md:mb-8 font-light"
+           >
             <motion.span
               animate={{ 
                 textShadow: [
@@ -203,13 +170,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </motion.span>
           </motion.h2>
 
-          {/* Animated Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
-            className="text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
+                     {/* Animated Description */}
+           <motion.p
+             initial={{ opacity: 0, y: 50 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+             className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-500 dark:text-slate-400 mb-8 md:mb-12 max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
+           >
             Modern web teknolojileri ile{' '}
             <motion.span
               animate={{ color: ['#3b82f6', '#8b5cf6', '#3b82f6'] }}
@@ -237,20 +204,20 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             {' '}uygulamalar geliştiriyorum.
           </motion.p>
 
-          {/* Animated CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
-          >
+                     {/* Animated CTA Buttons */}
+           <motion.div
+             initial={{ opacity: 0, y: 50 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
+             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 md:mb-12 px-4 sm:px-0"
+           >
             <motion.button
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
               }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary flex items-center justify-center space-x-3 text-lg px-8 py-4"
+                             className="btn-primary flex items-center justify-center space-x-2 sm:space-x-3 text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3 sm:py-4"
             >
               <Mail className="w-6 h-6" />
               <span>İletişime Geç</span>
@@ -262,20 +229,20 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)"
               }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary flex items-center justify-center space-x-3 text-lg px-8 py-4"
+                             className="btn-secondary flex items-center justify-center space-x-2 sm:space-x-3 text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3 sm:py-4"
             >
               <Download className="w-6 h-6" />
               <span>CV İndir</span>
             </motion.button>
           </motion.div>
 
-          {/* Animated Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="flex justify-center space-x-8 mb-12"
-          >
+                     {/* Animated Social Links */}
+           <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+             className="flex justify-center space-x-6 sm:space-x-8 mb-8 md:mb-12"
+           >
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.label}
@@ -291,41 +258,14 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                   rotate: 360,
                   boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)"
                 }}
-                className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-slate-600 dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
+                                 className="p-3 sm:p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-slate-600 dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
               >
-                <social.icon className="w-7 h-7" />
+                                 <social.icon className="w-6 h-6 sm:w-7 sm:h-7" />
               </motion.a>
             ))}
           </motion.div>
 
-          {/* Animated Scroll Indicator */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.5, duration: 0.5 }}
-            onClick={scrollToAbout}
-            className="flex flex-col items-center space-y-3 text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300"
-          >
-            <motion.span
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-sm font-medium"
-            >
-              Daha Fazla
-            </motion.span>
-            <motion.div
-              animate={{ 
-                y: [0, 10, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                y: { duration: 2, repeat: Infinity },
-                scale: { duration: 1, repeat: Infinity }
-              }}
-            >
-              <ChevronDown className="w-8 h-8" />
-            </motion.div>
-          </motion.button>
+          
         </div>
       </div>
     </section>

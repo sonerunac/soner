@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { AccessibilityProvider } from './components/AccessibilityProvider'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -22,6 +23,35 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Professional Figma-like page transitions
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      y: 30,
+      scale: 0.98,
+      filter: "blur(4px)"
+    },
+    in: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)"
+    },
+    out: {
+      opacity: 0,
+      y: -30,
+      scale: 0.98,
+      filter: "blur(4px)"
+    }
+  }
+
+  const pageTransition = {
+    type: "spring",
+    stiffness: 100,
+    damping: 20,
+    mass: 0.8
+  }
+
   if (isLoading) {
     return <LoadingScreen />
   }
@@ -34,11 +64,73 @@ function App() {
             <Suspense fallback={<LoadingScreen />}>
               <Header activeSection={activeSection} onSectionChange={setActiveSection} />
               <main id="main-content" className="h-full overflow-y-auto" role="main">
-                {activeSection === 'home' && <Hero onNavigate={setActiveSection} />}
-                {activeSection === 'about' && <LazyComponent component="about" />}
-                {activeSection === 'skills' && <LazyComponent component="skills" />}
-                {activeSection === 'projects' && <LazyComponent component="projects" />}
-                {activeSection === 'contact' && <LazyComponent component="contact" />}
+                <AnimatePresence mode="wait">
+                  {activeSection === 'home' && (
+                    <motion.div
+                      key="home"
+                      initial="initial"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariants}
+                      transition={pageTransition}
+                      className="h-full"
+                    >
+                      <Hero onNavigate={setActiveSection} />
+                    </motion.div>
+                  )}
+                  {activeSection === 'about' && (
+                    <motion.div
+                      key="about"
+                      initial="initial"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariants}
+                      transition={pageTransition}
+                      className="h-full"
+                    >
+                      <LazyComponent component="about" />
+                    </motion.div>
+                  )}
+                  {activeSection === 'skills' && (
+                    <motion.div
+                      key="skills"
+                      initial="initial"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariants}
+                      transition={pageTransition}
+                      className="h-full"
+                    >
+                      <LazyComponent component="skills" />
+                    </motion.div>
+                  )}
+                  {activeSection === 'projects' && (
+                    <motion.div
+                      key="projects"
+                      initial="initial"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariants}
+                      transition={pageTransition}
+                      className="h-full"
+                    >
+                      <LazyComponent component="projects" />
+                    </motion.div>
+                  )}
+                  {activeSection === 'contact' && (
+                    <motion.div
+                      key="contact"
+                      initial="initial"
+                      animate="in"
+                      exit="out"
+                      variants={pageVariants}
+                      transition={pageTransition}
+                      className="h-full"
+                    >
+                      <LazyComponent component="contact" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </main>
               <Footer />
               <ScrollToTop />

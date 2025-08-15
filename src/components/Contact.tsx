@@ -82,16 +82,16 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="h-full flex items-center justify-center bg-gray-50 dark:bg-dark-800">
-      <div className="container-custom section-padding">
+    <section id="contact" className="h-full flex items-start justify-center bg-gray-50 dark:bg-dark-800 pt-8">
+      <div className="container-custom section-padding py-2">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-6"
+          className="text-center mb-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             <span className="gradient-text">İletişim</span>
           </h2>
           <p className="text-base text-dark-500 dark:text-dark-400 max-w-2xl mx-auto">
@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -109,13 +109,12 @@ const Contact: React.FC = () => {
             className="space-y-4"
           >
             <div>
-              <h3 className="text-xl font-bold mb-4 text-dark-900 dark:text-white">
-                İletişim Bilgileri
-              </h3>
-              <p className="text-sm text-dark-600 dark:text-dark-300 mb-4 leading-relaxed">
-                Projeleriniz hakkında konuşmak için benimle iletişime geçebilirsiniz. 
-                Size en uygun çözümü birlikte geliştirelim.
-              </p>
+                           <h3 className="text-lg font-bold mb-2 text-dark-900 dark:text-white">
+               İletişim Bilgileri
+             </h3>
+             <p className="text-xs text-dark-600 dark:text-dark-300 mb-3 leading-tight">
+               Projeleriniz hakkında konuşmak için benimle iletişime geçebilirsiniz.
+             </p>
             </div>
 
             <div className="space-y-3">
@@ -180,16 +179,16 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="card p-6"
+            className="card p-4"
           >
-            <h3 className="text-xl font-bold mb-4 text-dark-900 dark:text-white">
-              Mesaj Gönder
-            </h3>
+                         <h3 className="text-lg font-bold mb-3 text-dark-900 dark:text-white">
+               Mesaj Gönder
+             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
+                             <div className="grid md:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-1">
+                                     <label htmlFor="name" className="block text-xs font-medium text-dark-700 dark:text-dark-300 mb-1">
                     Ad Soyad
                   </label>
                   <input
@@ -204,7 +203,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-1">
+                                     <label htmlFor="email" className="block text-xs font-medium text-dark-700 dark:text-dark-300 mb-1">
                     Email
                   </label>
                   <input
@@ -221,7 +220,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-1">
+                                 <label htmlFor="subject" className="block text-xs font-medium text-dark-700 dark:text-dark-300 mb-1">
                   Konu
                 </label>
                 <input
@@ -237,7 +236,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-1">
+                                 <label htmlFor="message" className="block text-xs font-medium text-dark-700 dark:text-dark-300 mb-1">
                   Mesaj
                 </label>
                 <textarea
@@ -246,7 +245,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  rows={4}
+                                     rows={3}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-700 text-dark-900 dark:text-white transition-all duration-300 resize-none text-sm"
                   placeholder="Projeniz hakkında detayları paylaşın..."
                 />
