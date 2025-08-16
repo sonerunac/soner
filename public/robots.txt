@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sonerunac.com
+
+# Sitemaps
+Sitemap: https://sonerunac.com/sitemap.xml
