@@ -35,7 +35,7 @@ const Projects = () => {
       id: 1,
       title: 'E-Commerce Platform',
       description: 'Modern e-ticaret platformu. Next.js, TypeScript ve Tailwind CSS ile geliştirildi.',
-      image: '/api/placeholder/600/400',
+      image: '/projects/E-Commerce.png',
       category: 'fullstack',
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js'],
       liveUrl: '#',
@@ -47,7 +47,7 @@ const Projects = () => {
       id: 2,
       title: 'Task Management App',
       description: 'Takım çalışması için gelişmiş görev yönetimi uygulaması.',
-      image: '/api/placeholder/600/400',
+      image: '/projects/taskmanagement.png',
       category: 'frontend',
       technologies: ['React', 'TypeScript', 'Framer Motion', 'Firebase'],
       liveUrl: '#',
@@ -59,7 +59,7 @@ const Projects = () => {
       id: 3,
       title: 'Portfolio Website',
       description: 'Kişisel portföy websitesi. Modern tasarım ve mobil uyumluluk.',
-      image: '/api/placeholder/600/400',
+      image: '/projects/portfolio.png',
       category: 'frontend',
       technologies: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'TypeScript'],
       liveUrl: 'https://sonerunac.com',
@@ -71,7 +71,7 @@ const Projects = () => {
       id: 4,
       title: 'Blog CMS',
       description: 'İçerik yönetim sistemi. Markdown desteği ve SEO optimizasyonu.',
-      image: '/api/placeholder/600/400',
+      image: '/projects/BlogCMS.jpeg',
       category: 'fullstack',
       technologies: ['Next.js', 'Node.js', 'MongoDB', 'Tailwind CSS'],
       liveUrl: '#',
@@ -164,13 +164,12 @@ const Projects = () => {
                 <div className="relative group perspective">
                   <div className="w-full h-32 xs:h-36 rounded-lg overflow-hidden bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900/20 dark:to-blue-900/20 [transform:rotateX(0deg)] group-hover:[transform:rotateX(3deg)] transition-transform duration-300">
                     <Image
-                      src={`https://via.placeholder.com/640x360.png?text=${encodeURIComponent(project.title)}`}
+                      src={project.image}
                       alt={`${project.title} görseli`}
                       fill
                       sizes="(max-width: 640px) 100vw, 50vw"
                       className="object-cover"
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO0WQ8AAgMB2xCj7f4AAAAASUVORK5CYII="
+                      priority={index < 2}
                     />
                     <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
                   </div>

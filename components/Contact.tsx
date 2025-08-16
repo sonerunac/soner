@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useCallback, memo } from 'react'
+import type { ComponentType } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, MapPin, Send, CheckCircle, AlertCircle, Github as GithubIcon, Linkedin, Instagram } from 'lucide-react'
 
 const Contact = memo(() => {
   const [ref, inView] = useInView({
@@ -78,23 +79,24 @@ const Contact = memo(() => {
     }
   ]
 
-  const socialLinks = [
+  type IconType = ComponentType<{ size?: number | string; className?: string }>
+  const socialLinks: { name: string; url: string; icon: IconType; color: string }[] = [
     {
       name: 'GitHub',
       url: 'https://github.com/sonerunac',
-      icon: '🐙',
+      icon: GithubIcon,
       color: 'hover:bg-gray-800 hover:text-white'
     },
     {
       name: 'LinkedIn',
       url: 'https://linkedin.com/in/sonerunac',
-      icon: '💼',
+      icon: Linkedin,
       color: 'hover:bg-blue-600 hover:text-white'
     },
     {
       name: 'Instagram',
       url: 'https://instagram.com/sonerunac',
-      icon: '📸',
+      icon: Instagram,
       color: 'hover:bg-pink-600 hover:text-white'
     }
   ]
@@ -314,7 +316,7 @@ const Contact = memo(() => {
                     whileTap={{ scale: 0.9 }}
                     className={`p-2.5 bg-gray-100 dark:bg-dark-700 text-dark-600 dark:text-dark-300 rounded-lg transition-all duration-300 ${social.color}`}
                   >
-                    <span className="text-base">{social.icon}</span>
+                    <social.icon size={16} />
                   </motion.a>
                 ))}
               </div>
