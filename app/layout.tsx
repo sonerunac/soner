@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    apple: '/icon-192x192.png',
   },
   alternates: {
     canonical: '/',
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/icon-512x512.png',
-        width: 1200,
-        height: 630,
+        width: 512,
+        height: 512,
         alt: 'Soner Unaç - Full Stack Developer',
       },
     ],
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Soner Unaç - Full Stack Developer',
     description: 'Professional Full Stack Developer specializing in modern web technologies.',
     images: ['/icon-512x512.png'],
@@ -92,7 +92,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased bg-white dark:bg-dark-900 text-dark-900 dark:text-white transition-colors duration-300`}>
         <a href="#home" className="skip-link">İçeriğe atla</a>
-        <div id="scroll-progress" className="scroll-progress" style={{ width: 0 }} />
+        <div id="scroll-progress" className="scroll-progress" style={{ width: '0%' }} suppressHydrationWarning />
         <div>
           {children}
         </div>

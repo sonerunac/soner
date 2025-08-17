@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Github, Linkedin, Instagram, Twitter, Mail, Phone, MapPin, ArrowUp } from 'lucide-react'
+import { Github, Linkedin, Instagram, Twitter, Mail, MapPin, ArrowUp } from 'lucide-react'
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -18,23 +18,15 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Web Geliştirme', href: '#services' },
-      { name: 'Mobil Uygulama', href: '#services' },
-      { name: 'UI/UX Tasarım', href: '#services' },
-      { name: 'SEO Optimizasyonu', href: '#services' },
+      { name: 'Web Geliştirme', href: '#projects' },
+      { name: 'UI/UX Tasarım', href: '#projects' },
+      { name: 'SEO Optimizasyonu', href: '#projects' },
     ],
     company: [
       { name: 'Hakkımda', href: '#about' },
-      { name: 'Deneyim', href: '#experience' },
       { name: 'Projeler', href: '#projects' },
       { name: 'İletişim', href: '#contact' },
     ],
-    support: [
-      { name: 'Yardım Merkezi', href: '#help' },
-      { name: 'SSS', href: '#faq' },
-      { name: 'Gizlilik Politikası', href: '#privacy' },
-      { name: 'Kullanım Şartları', href: '#terms' },
-    ]
   }
 
   const socialLinks = [

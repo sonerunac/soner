@@ -35,7 +35,7 @@ npm run deploy:ghpages
 ### Önemli Notlar
 
 - `next.config.js` içinde `output: 'export'` ve `images.unoptimized: true` etkin.
-- OG referansı statik görsel dosyasına yönlendirildi ( `/icon-512x512.png` ).
+- OG görseli `/icon-512x512.png` ile (512x512) uyumlu olacak şekilde ayarlandı.
 
 # Soner Unaç - Portfolio Website
 
@@ -95,7 +95,6 @@ soner-unac-portfolio/
 │   ├── Hero.tsx           # Ana hero bölümü
 │   ├── About.tsx          # Hakkımda bölümü
 │   ├── Skills.tsx         # Yetenekler bölümü
-│   ├── Experience.tsx     # Deneyim bölümü
 │   ├── Projects.tsx       # Projeler bölümü
 │   ├── Contact.tsx        # İletişim bölümü
 │   └── Footer.tsx         # Footer bölümü

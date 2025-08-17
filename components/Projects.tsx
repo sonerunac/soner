@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, Eye, Filter, Code } from 'lucide-react'
+import { Github, Eye, Filter } from 'lucide-react'
 import Image from 'next/image'
 
 const Projects = () => {
@@ -38,7 +38,7 @@ const Projects = () => {
       image: '/projects/E-Commerce.png',
       category: 'fullstack',
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-      liveUrl: '#',
+      liveUrl: '',
       githubUrl: 'https://github.com/sonerunac/ecommerce',
       features: ['Responsive Design', 'Payment Integration', 'Admin Dashboard'],
       status: 'completed'
@@ -50,7 +50,7 @@ const Projects = () => {
       image: '/projects/taskmanagement.png',
       category: 'frontend',
       technologies: ['React', 'TypeScript', 'Framer Motion', 'Firebase'],
-      liveUrl: '#',
+      liveUrl: '',
       githubUrl: 'https://github.com/sonerunac/task-app',
       features: ['Real-time Updates', 'Drag & Drop', 'Team Collaboration'],
       status: 'completed'
@@ -74,7 +74,7 @@ const Projects = () => {
       image: '/projects/BlogCMS.jpeg',
       category: 'fullstack',
       technologies: ['Next.js', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-      liveUrl: '#',
+      liveUrl: '',
       githubUrl: 'https://github.com/sonerunac/blog-cms',
       features: ['Markdown Editor', 'Category Management', 'SEO Tools'],
       status: 'completed'
@@ -150,7 +150,7 @@ const Projects = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4"
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false}>
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -162,7 +162,7 @@ const Projects = () => {
               >
                 {/* Project Image */}
                 <div className="relative group perspective">
-                  <div className="w-full h-32 xs:h-36 rounded-lg overflow-hidden bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900/20 dark:to-blue-900/20 [transform:rotateX(0deg)] group-hover:[transform:rotateX(3deg)] transition-transform duration-300">
+                  <div className="relative w-full h-32 xs:h-36 rounded-lg overflow-hidden bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900/20 dark:to-blue-900/20 [transform:rotateX(0deg)] group-hover:[transform:rotateX(3deg)] transition-transform duration-300">
                     <Image
                       src={project.image}
                       alt={`${project.title} görseli`}
@@ -232,6 +232,7 @@ const Projects = () => {
 
                   {/* Action Buttons - more compact */}
                   <div className="flex flex-col xs:flex-row gap-2">
+                    {project.liveUrl && (
                     <motion.a
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -244,6 +245,7 @@ const Projects = () => {
                       <span className="hidden xs:inline">Demo</span>
                       <span className="xs:hidden">Demo</span>
                     </motion.a>
+                    )}
                     
                     <motion.a
                       whileHover={{ scale: 1.02 }}

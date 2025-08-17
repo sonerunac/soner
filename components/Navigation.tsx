@@ -117,14 +117,15 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
         <div className="nav-container h-14 xs:h-16">
           {/* Logo */}
-          <motion.div
+          <motion.a
+            href="#home"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="nav-logo brand"
           >
             <Logo size={40} className="w-9 h-9 xs:w-10 xs:h-10" />
             <span className="brand-name text-base xs:text-lg gradient-text">Soner Unaç</span>
-          </motion.div>
+          </motion.a>
 
           {/* Menu */}
           <div className="nav-menu hidden md:flex">
@@ -149,7 +150,7 @@ const Navigation = () => {
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
               className="nav-button text-dark-600 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-800"
-              aria-label={isDark ? 'Light mode' : 'Dark mode'}
+              aria-label={isDark ? 'Aydınlık mod' : 'Karanlık mod'}
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </motion.button>
@@ -191,7 +192,7 @@ const Navigation = () => {
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
             className="nav-mobile-toggle md:hidden mobile-toggle-btn text-dark-700 dark:text-white"
-            aria-label="Toggle menu"
+            aria-label={isOpen ? 'Menüyü kapat' : 'Menüyü aç'}
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </motion.button>
@@ -244,7 +245,7 @@ const Navigation = () => {
 
                 <div className="flex items-center justify-between px-2 py-2">
                   <span className="text-dark-700 dark:text-white font-medium text-sm">Tema</span>
-                  <button onClick={toggleTheme} className="mobile-toggle-btn w-9 h-9 text-dark-700 dark:text-white" aria-label={isDark ? 'Light mode' : 'Dark mode'}>{isDark ? <Sun size={18} /> : <Moon size={18} />}</button>
+                  <button onClick={toggleTheme} className="mobile-toggle-btn w-9 h-9 text-dark-700 dark:text-white" aria-label={isDark ? 'Aydınlık mod' : 'Karanlık mod'}>{isDark ? <Sun size={18} /> : <Moon size={18} />}</button>
                 </div>
 
                 <div className="flex items-center gap-2 px-2 pb-3">
