@@ -543,6 +543,12 @@
   }
   .mobile-toggle-btn:active { transform: scale(0.96); }
   .mobile-toggle-btn:focus-visible { outline: 2px solid #0ea5e9; outline-offset: 2px; }
+
+  /* ScrollTop specific reset */
+  .scrolltop-btn::before,
+  .scrolltop-btn::after { content: none !important; display: none !important; }
+  .scrolltop-btn { filter: none !important; backdrop-filter: none !important; box-shadow: none !important; }
+  .dark .scrolltop-btn { background-color: rgb(37 99 235) !important; }
 }
 
 @layer utilities {
