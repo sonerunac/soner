@@ -11,11 +11,16 @@ export const metadata: Metadata = {
   keywords: ['Full Stack Developer', 'Next.js', 'React', 'TypeScript', 'Web Development', 'Frontend', 'Backend', 'Türkiye', 'İstanbul', 'Portfolio', 'Web Developer', 'Software Engineer', 'JavaScript', 'Node.js', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS'],
   authors: [{ name: 'Soner Unaç' }],
   creator: 'Soner Unaç',
-  manifest: '/manifest.json',
+  manifest: '/site.webmanifest',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
     shortcut: '/favicon.ico',
-    apple: '/icon-192x192.png',
+    apple: [
+      { url: '/apple-touch-icon.png', type: 'image/png' }
+    ],
   },
   alternates: {
     canonical: 'https://sonerunac.com',
@@ -27,7 +32,7 @@ export const metadata: Metadata = {
     siteName: 'Soner Unaç Portfolio',
     images: [
       {
-        url: '/icon-512x512.png',
+        url: '/android-chrome-512x512.png',
         width: 512,
         height: 512,
         alt: 'Soner Unaç - Full Stack Developer',
@@ -40,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'Soner Unaç - Full Stack Developer',
     description: 'Professional Full Stack Developer specializing in modern web technologies.',
-    images: ['/icon-512x512.png'],
+    images: ['/android-chrome-512x512.png'],
   },
   robots: {
     index: true,
