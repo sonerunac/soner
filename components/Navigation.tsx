@@ -14,7 +14,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      const sections = ['#home', '#about', '#skills', '#projects', '#contact']
+      const sections = ['#home', '#about', '#skills', '#projects', '#blog', '#contact']
       const offsets = sections.map((id) => {
         const el = document.querySelector(id) as HTMLElement | null
         if (!el) return { id, top: Infinity }
@@ -87,6 +87,7 @@ const Navigation = () => {
     { name: 'Hakkımda', href: '#about', ariaLabel: 'Hakkımda bölümüne git' },
     { name: 'Yetenekler', href: '#skills', ariaLabel: 'Yetenekler bölümüne git' },
     { name: 'Projeler', href: '#projects', ariaLabel: 'Projeler bölümüne git' },
+    { name: 'Blog', href: '#blog', ariaLabel: 'Blog bölümüne git' },
     { name: 'İletişim', href: '#contact', ariaLabel: 'İletişim bölümüne git' },
   ]
 

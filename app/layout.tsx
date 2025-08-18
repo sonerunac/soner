@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://sonerunac.com'),
   title: 'Soner Unaç - Full Stack Developer',
   description: 'Professional Full Stack Developer specializing in modern web technologies. Creating innovative digital solutions with Next.js, React, and cutting-edge tools.',
-  keywords: ['Full Stack Developer', 'Next.js', 'React', 'TypeScript', 'Web Development', 'Frontend', 'Backend'],
+  keywords: ['Full Stack Developer', 'Next.js', 'React', 'TypeScript', 'Web Development', 'Frontend', 'Backend', 'Türkiye', 'İstanbul', 'Portfolio', 'Web Developer', 'Software Engineer', 'JavaScript', 'Node.js', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS'],
   authors: [{ name: 'Soner Unaç' }],
   creator: 'Soner Unaç',
   manifest: '/manifest.json',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     apple: '/icon-192x192.png',
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://sonerunac.com',
   },
   openGraph: {
     title: 'Soner Unaç - Full Stack Developer',
@@ -86,6 +86,38 @@ export default function RootLayout({
               url: 'https://sonerunac.com',
               sameAs: ['https://github.com/sonerunac', 'https://linkedin.com/in/sonerunac', 'https://instagram.com/sonerunac'],
               jobTitle: 'Full Stack Developer',
+              description: 'Professional Full Stack Developer specializing in modern web technologies',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'TR',
+                addressLocality: 'İstanbul'
+              },
+              knowsAbout: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS'],
+              alumniOf: {
+                '@type': 'Organization',
+                name: 'Software Development'
+              }
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Soner Unaç Portfolio',
+              url: 'https://sonerunac.com',
+              description: 'Professional Full Stack Developer Portfolio',
+              author: {
+                '@type': 'Person',
+                name: 'Soner Unaç'
+              },
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://sonerunac.com?search={search_term_string}',
+                'query-input': 'required name=search_term_string'
+              }
             }),
           }}
         />

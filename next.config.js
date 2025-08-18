@@ -1,14 +1,19 @@
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV !== 'production'
+const path = require('path');
 
 const nextConfig = {
-  // Static export for GitHub Pages
-  output: 'export',
-  images: {
-    unoptimized: true,
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
-  },
-  trailingSlash: true,
-}
+  output: 'export',  // statik çıktı
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@': path.resolve(__dirname, '.'),
+      '@components': path.resolve(__dirname, 'components'),
+      '@app': path.resolve(__dirname, 'app'),
+      '@lib': path.resolve(__dirname, 'lib')
+    };
+    return config;
+  }
+  // headers(): statik export ile ÇALIŞMAZ -> tanımlama!
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
