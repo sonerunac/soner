@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, Instagram, Sun, Moon } from 'lucide-react'
 import Logo from './Logo'
@@ -186,6 +187,13 @@ const Navigation = () => {
             >
               <Instagram size={18} />
             </motion.a>
+            <Link
+              href="/shop"
+              className="ml-2 nav-button h-9 px-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-medium"
+              aria-label="Mağaza"
+            >
+              Mağaza
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -253,6 +261,17 @@ const Navigation = () => {
                   <a href="https://github.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Github" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Github size={18} /></a>
                   <a href="https://linkedin.com/in/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Linkedin size={18} /></a>
                   <a href="https://instagram.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Instagram size={18} /></a>
+                </div>
+
+                <div className="px-2 pb-4">
+                  <Link
+                    href="/shop"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full inline-flex items-center justify-center h-11 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold"
+                    aria-label="Mağaza"
+                  >
+                    Mağaza
+                  </Link>
                 </div>
               </div>
             </motion.div>
