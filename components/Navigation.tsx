@@ -89,6 +89,7 @@ const Navigation = () => {
     { name: 'Projeler', href: '#projects', ariaLabel: 'Projeler bölümüne git' },
     { name: 'Blog', href: '#blog', ariaLabel: 'Blog bölümüne git' },
     { name: 'İletişim', href: '#contact', ariaLabel: 'İletişim bölümüne git' },
+    { name: 'Ürünler', href: '/products', ariaLabel: 'Ürünler sayfasına git' },
   ]
 
   const scrollToSection = (href: string) => {
@@ -103,7 +104,11 @@ const Navigation = () => {
   const handleKeyDown = (event: React.KeyboardEvent, href: string) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      scrollToSection(href)
+      if (href.startsWith('#')) {
+        scrollToSection(href)
+      } else {
+        window.location.href = href
+      }
     }
   }
 
@@ -135,7 +140,7 @@ const Navigation = () => {
                 key={item.name}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => item.href.startsWith('#') ? scrollToSection(item.href) : (window.location.href = item.href)}
                 className={`nav-button nav-link text-dark-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 font-medium text-sm lg:text-base ${active === item.href ? 'is-active' : ''}`}
                 aria-current={active === item.href ? 'page' : undefined}
               >
@@ -234,7 +239,7 @@ const Navigation = () => {
                 {navItems.map((item) => (
                   <button
                     key={item.name}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => item.href.startsWith('#') ? scrollToSection(item.href) : (window.location.href = item.href)}
                     onKeyDown={(e) => handleKeyDown(e as any, item.href)}
                     className="w-full text-left text-dark-700 dark:text-white font-medium text-base py-3 px-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5"
                   >
