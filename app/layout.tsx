@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { CartProvider } from '@/contexts/CartContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -130,9 +131,11 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased bg-white dark:bg-dark-900 text-dark-900 dark:text-white transition-colors duration-300`}>
         <a href="#home" className="skip-link">İçeriğe atla</a>
         <div id="scroll-progress" className="scroll-progress" style={{ width: '0%' }} suppressHydrationWarning />
-        <div>
-          {children}
-        </div>
+        <CartProvider>
+          <div>
+            {children}
+          </div>
+        </CartProvider>
         <script
           dangerouslySetInnerHTML={{
             __html: `

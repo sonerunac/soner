@@ -2,19 +2,25 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Github, Linkedin, Instagram, Sun, Moon } from 'lucide-react'
+import { Menu, X, Github, Linkedin, Instagram, Sun, Moon, ShoppingCart } from 'lucide-react'
 import Logo from './Logo'
+import { useCart } from '@/contexts/CartContext'
+import ShoppingCart from './ShoppingCart'
+import CheckoutModal from './CheckoutModal'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isDark, setIsDark] = useState(false)
   const [active, setActive] = useState<string>('#home')
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
+  const { state } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      const sections = ['#home', '#about', '#skills', '#projects', '#blog', '#contact']
+      const sections = ['#home', '#about', '#skills', '#projects', '#products', '#blog', '#contact']
       const offsets = sections.map((id) => {
         const el = document.querySelector(id) as HTMLElement | null
         if (!el) return { id, top: Infinity }
@@ -87,6 +93,7 @@ const Navigation = () => {
     { name: 'Hakkımda', href: '#about', ariaLabel: 'Hakkımda bölümüne git' },
     { name: 'Yetenekler', href: '#skills', ariaLabel: 'Yetenekler bölümüne git' },
     { name: 'Projeler', href: '#projects', ariaLabel: 'Projeler bölümüne git' },
+    { name: 'Ürünler', href: '#products', ariaLabel: 'Ürünler bölümüne git' },
     { name: 'Blog', href: '#blog', ariaLabel: 'Blog bölümüne git' },
     { name: 'İletişim', href: '#contact', ariaLabel: 'İletişim bölümüne git' },
   ]
@@ -146,6 +153,22 @@ const Navigation = () => {
 
           {/* Actions */}
           <div className="nav-actions hidden md:flex">
+            {/* Shopping Cart */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsCartOpen(true)}
+              className="nav-button text-dark-600 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-800 relative"
+              aria-label="Sepet"
+            >
+              <ShoppingCart size={18} />
+              {state.itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {state.itemCount}
+                </span>
+              )}
+            </motion.button>
+
             <motion.button
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
@@ -249,16 +272,46 @@ const Navigation = () => {
                   <button onClick={toggleTheme} className="mobile-toggle-btn w-9 h-9 text-dark-700 dark:text-white" aria-label={isDark ? 'Aydınlık mod' : 'Karanlık mod'}>{isDark ? <Sun size={18} /> : <Moon size={18} />}</button>
                 </div>
 
-                <div className="flex items-center gap-2 px-2 pb-3">
-                  <a href="https://github.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Github" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Github size={18} /></a>
-                  <a href="https://linkedin.com/in/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Linkedin size={18} /></a>
-                  <a href="https://instagram.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Instagram size={18} /></a>
+                <div className="flex items-center justify-between px-2 pb-3">
+                  <div className="flex items-center gap-2">
+                    <a href="https://github.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Github" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Github size={18} /></a>
+                    <a href="https://linkedin.com/in/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Linkedin size={18} /></a>
+                    <a href="https://instagram.com/sonerunac" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white"><Instagram size={18} /></a>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      setIsCartOpen(true)
+                      setIsOpen(false)
+                    }} 
+                    className="mobile-toggle-btn w-9 h-9 flex items-center justify-center text-dark-700 dark:text-white relative" 
+                    aria-label="Sepet"
+                  >
+                    <ShoppingCart size={18} />
+                    {state.itemCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                        {state.itemCount}
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Shopping Cart */}
+      <ShoppingCart 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        onCheckout={() => setIsCheckoutOpen(true)}
+      />
+
+      {/* Checkout Modal */}
+      <CheckoutModal 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+      />
     </motion.nav>
   )
 }
